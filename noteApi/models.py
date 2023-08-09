@@ -6,5 +6,4 @@ class Note(models.Model):
     body = models.TextField()
     updated = models.DateField(auto_now=True)
     created = models.DateField(auto_now_add=True)
-    image = models.ImageField(upload_to='images', default='')
     
