@@ -1,6 +1,6 @@
 {
   "name": "todo_reactjs_app",
-  "proxy": "http://127.0.0.1:8000",
+  "proxy": "https://note-app-syrw.onrender.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
