@@ -2,7 +2,11 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Note
 from .serializer import noteSerializer
+from django.shortcuts import render
 
+
+def reactView(request):
+    return render(request, "index.html")
 
 @api_view(['GET'])
 # Create your views here.
@@ -87,3 +91,6 @@ def deleteNote(request, pk):
     note = Note.objects.get(id=pk)
     note.delete()
     return Response("Note was deleted")
+
+
+
