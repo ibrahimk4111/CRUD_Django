@@ -1,5 +1,4 @@
 from pathlib import Path
-from dotenv import load_dotenv
 import os
 import dj_database_url
 
@@ -7,18 +6,19 @@ import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-load_dotenv(BASE_DIR / '.env')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = 'django-insecure-k!5#n6&8$!nhg90@5&sk^&h2f*^i&ohtq34!q82--tdk^+1&tu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', '0').lower() in ['true', 't', '1']
+# DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = [os.getenv('ALLOWED_HOSTS').split(' ')]
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -74,17 +74,22 @@ WSGI_APPLICATION = 'Todo_Backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+Custom_DB = os.environ.get("DATABASE_URL")
+if Custom_DB:
+    DATABASES = {
+        'default': dj_database_url.parse(Custom_DB, conn_max_age=600)
+    }
+else:
+    DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
-# DATABASES = {
-#      'default': {
-#          'ENGINE': 'django.db.backends.sqlite3',
-#          'NAME': BASE_DIR / 'db.sqlite3',
-#      }
-#  }
 
-DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'), conn_max_age=600),
-}
+# postgres://note_app:kRzyJzkA7F0PfUd0rglCgbtZ8wZ3fWAg@dpg-cjb04h1itvpc73csdv20-a.oregon-postgres.render.com/note_app_2dmx
+
 
 
 AUTH_PASSWORD_VALIDATORS = [
