@@ -5,8 +5,8 @@ from .serializer import noteSerializer
 from django.shortcuts import render
 
 
-def reactView(request):
-    return render(request, "index.html")
+# def reactView(request):
+#     return render(request, "index.html")
 
 @api_view(['GET'])
 # Create your views here.
