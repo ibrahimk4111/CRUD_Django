@@ -65,11 +65,10 @@ def dbNote(request, pk):
 @api_view(['POST'])
 def createNote(request):
     data = request.data
-    newNote = Note.objects.create(
-        body = data['body']
-    )
-    serializer = noteSerializer(newNote, many=False)
-    return Response(serializer.data)
+    serializer = noteSerializer(data=data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response("success")
 
 
 
