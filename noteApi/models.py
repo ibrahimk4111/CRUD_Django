@@ -2,7 +2,6 @@ from django.db import models
 
 # Create your models here.
 class Note(models.Model):
-    title = models.CharField(max_length=100, default='')
     body = models.TextField()
     isDone = models.BooleanField(default=False)
     updated = models.DateField(auto_now=True)
