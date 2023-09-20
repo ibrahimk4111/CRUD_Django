@@ -24,11 +24,11 @@ def dbNote(request, pk):
 # create a single data from database
 @api_view(['POST'])
 def createNote(request):
-    data = request.data
-    serializer = noteSerializer(data=data)
+    noteData = request.data
+    serializer = noteSerializer(data=noteData, many=False)
     if serializer.is_valid():
         serializer.save()
-        return Response("success")
+        return Response(serializer.data)
     
     return Response("error")
 
@@ -38,11 +38,9 @@ def createNote(request):
 @api_view(['PUT'])
 def updateNote(request, pk):
     updateNote = dbNote.objects.get(id=pk)
-    # catching a single object and putting data into itself
     serializer = noteSerializer(updateNote, data=request.data)
     if serializer.is_valid():
         serializer.save()
-    
     return Response(serializer.data)
 
 
