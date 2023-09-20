@@ -4,6 +4,7 @@ from django.db import models
 class Note(models.Model):
     title = models.CharField(max_length=100, default='')
     body = models.TextField()
+    isDone = models.BooleanField(default=False)
     updated = models.DateField(auto_now=True)
     created = models.DateField(auto_now_add=True)
     
