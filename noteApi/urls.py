@@ -3,7 +3,6 @@ from . import views
 
 urlpatterns = [
     # path('', views.reactView, name='view'),
-    path('routes/', views.getRoutes, name='routes'),
     path('notes/', views.dbNotes, name='notes'),
     path('notes/create/', views.createNote, name='create-note'),
     path('notes/<str:pk>/', views.dbNote, name='note'),
