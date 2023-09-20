@@ -1,9 +1,7 @@
 from django.db import models
 
-# Create your models here.
-class Note(models.Model):
+class dbNote(models.Model):
     body = models.TextField()
-    is_complete = models.BooleanField()
+    is_done = models.BooleanField()
     updated = models.DateField(auto_now=True)
     created = models.DateField(auto_now_add=True)
-    
